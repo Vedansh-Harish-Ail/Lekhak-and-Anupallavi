@@ -19,7 +19,8 @@ export function HeroSection({ bride, groom, date, heroImage }: HeroSectionProps)
           alt={`Soft focus romantic wedding background for ${bride} and ${groom}`}
           fill
           priority
-          className="object-cover opacity-50 mix-blend-multiply filter contrast-125 saturate-50"
+          className="object-cover opacity-60 mix-blend-multiply filter saturate-75"
+          style={{ objectPosition: 'center 35%' }}
         />
         {/* Gradient overlay for text readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-surface/40 via-surface/10 to-surface pointer-events-none" />

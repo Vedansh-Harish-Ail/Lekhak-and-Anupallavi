@@ -1,21 +1,86 @@
 'use client';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import { useState, useEffect } from 'react';
 import type { WeddingData } from '@/lib/data';
-
-const FloralMotif = () => (
-  <svg width="160" height="160" viewBox="0 0 100 100" fill="none" className="transform group-even:scale-x-100 group-odd:-scale-x-100 opacity-20 text-primary">
-    {/* Elegant botanical leaf swoosh */}
-    <path d="M50 100 C 50 60, 30 50, 15 20 C 45 35, 50 60, 50 100" stroke="currentColor" strokeWidth="1" fill="currentColor" fillOpacity="0.05"/>
-    <path d="M50 85 C 65 65, 80 55, 90 35 C 70 50, 55 65, 50 85" stroke="currentColor" strokeWidth="1" fill="currentColor" fillOpacity="0.05"/>
-    <circle cx="50" cy="95" r="2" fill="currentColor"/>
-    <circle cx="30" cy="45" r="1.5" fill="currentColor"/>
-    <circle cx="70" cy="55" r="1.5" fill="currentColor"/>
-  </svg>
-);
 
 interface EventsSectionProps {
   events: WeddingData['events'];
+}
+
+// Parse date strings like "2nd May", "6th May" → Date object in 2026
+function parseEventDate(dateStr: string, timeStr: string): Date {
+  const cleaned = dateStr.replace(/(\d+)(st|nd|rd|th)/, '$1');
+  return new Date(`${cleaned} 2026 ${timeStr.replace(' onwards', '').replace(' AM', ' AM').replace(' PM', ' PM')}`);
+}
+
+function useCountdown(targetDate: Date) {
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0, past: false });
+
+  useEffect(() => {
+    const tick = () => {
+      const diff = targetDate.getTime() - Date.now();
+      if (diff <= 0) {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0, past: true });
+        return;
+      }
+      setTimeLeft({
+        days: Math.floor(diff / 86400000),
+        hours: Math.floor((diff % 86400000) / 3600000),
+        minutes: Math.floor((diff % 3600000) / 60000),
+        seconds: Math.floor((diff % 60000) / 1000),
+        past: false,
+      });
+    };
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, [targetDate]);
+
+  return timeLeft;
+}
+
+function CountdownBlock({ label, value }: { label: string; value: number }) {
+  return (
+    <div className="flex flex-col items-center">
+      <span className="font-headline text-4xl md:text-5xl font-light text-primary leading-none">
+        {String(value).padStart(2, '0')}
+      </span>
+      <span className="font-label text-[9px] uppercase tracking-widest text-on-surface-variant/60 mt-2">
+        {label}
+      </span>
+    </div>
+  );
+}
+
+function EventCountdown({ dateStr, timeStr }: { dateStr: string; timeStr: string }) {
+  const target = parseEventDate(dateStr, timeStr);
+  const { days, hours, minutes, seconds, past } = useCountdown(target);
+
+  if (past) {
+    return (
+      <p className="font-headline italic text-lg text-primary/70 text-center">
+        The celebration has begun ✨
+      </p>
+    );
+  }
+
+  return (
+    <div className="flex flex-col items-center gap-6">
+      <span className="font-label text-[10px] uppercase tracking-[0.25em] text-on-surface-variant/50">
+        Counting down
+      </span>
+      <div className="flex items-end gap-6 md:gap-8">
+        <CountdownBlock label="Days" value={days} />
+        <span className="font-headline text-3xl text-primary/30 mb-2">:</span>
+        <CountdownBlock label="Hours" value={hours} />
+        <span className="font-headline text-3xl text-primary/30 mb-2">:</span>
+        <CountdownBlock label="Mins" value={minutes} />
+        <span className="font-headline text-3xl text-primary/30 mb-2">:</span>
+        <CountdownBlock label="Secs" value={seconds} />
+      </div>
+    </div>
+  );
 }
 
 export function EventsSection({ events }: EventsSectionProps) {
@@ -49,8 +114,8 @@ export function EventsSection({ events }: EventsSectionProps) {
             >
               {/* Point Node */}
               <div className="absolute left-8 md:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-surface border border-primary z-10 hidden md:block" />
-              
-              {/* Content Card (VenueSection integrated here layout-wise) */}
+
+              {/* Content Card */}
               <div className="w-full md:w-[calc(50%-4rem)] bg-surface-container-lowest p-8 md:p-10 rounded-xl shadow-[0_8px_30px_rgba(115,92,0,0.04)] relative ml-12 md:ml-0 md:group-odd:mr-16 md:group-even:ml-16 hover:shadow-[0_12px_40px_rgba(115,92,0,0.08)] transition-all duration-700">
                 <span className="font-label text-[10px] uppercase tracking-extreme text-primary mb-2 block">
                   {event.date} · {event.time}
@@ -63,7 +128,7 @@ export function EventsSection({ events }: EventsSectionProps) {
                     <span key={i} className="block">{line}</span>
                   ))}
                 </p>
-                <a 
+                <a
                   href={event.mapLink}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -72,10 +137,10 @@ export function EventsSection({ events }: EventsSectionProps) {
                   Open in Google Maps <ArrowRight className="w-[14px] h-[14px]" />
                 </a>
               </div>
-              
-              {/* Decorative Floral Filler for Empty Space */}
-              <div className="hidden md:flex w-[calc(50%-4rem)] justify-center items-center pointer-events-none select-none top-0 bottom-0">
-                <FloralMotif />
+
+              {/* Live Countdown — fills the empty alternating space */}
+              <div className="hidden md:flex w-[calc(50%-4rem)] justify-center items-center">
+                <EventCountdown dateStr={event.date} timeStr={event.time} />
               </div>
             </motion.div>
           ))}
