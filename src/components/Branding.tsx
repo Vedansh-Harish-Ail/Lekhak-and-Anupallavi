@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export function Branding() {
   return (
-    <section className="w-full py-16 flex flex-col items-center justify-center bg-surface dark:bg-stone-950 border-t border-outline/10">
+    <section className="w-full py-16 md:py-24 flex flex-col items-center justify-center bg-[#0c0c0c] border-t border-[#2a2a2a]">
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         whileInView={{ opacity: 1, scale: 1 }}
@@ -33,7 +33,7 @@ export function Branding() {
         <div className="mt-4 flex gap-6">
           <a
             href="https://portfolio-vedansh-eta.vercel.app/"
-            target="_blank" 
+            target="_blank"
             rel="noopener noreferrer"
             className="font-label text-xs text-white hover:text-primary transition-colors tracking-widest uppercase border-b border-transparent hover:border-primary/30 pb-1"
           >
