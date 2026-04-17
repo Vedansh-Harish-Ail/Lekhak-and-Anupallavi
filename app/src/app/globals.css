@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #735c00;
+  --color-primary: #4a3e00;
   --color-primary-container: #d4af37;
   --color-on-primary: #ffffff;
   --color-on-primary-container: #554300;
   --color-surface: #fbf9f5;
   --color-on-surface: #1b1c1a;
-  --color-on-surface-variant: #4d4635;
-  --color-outline: #7f7663;
+  --color-on-surface-variant: #3a3528;
+  --color-outline: #524b3c;
   --color-outline-variant: #d0c5af;
   --color-surface-container-low: #f5f3ef;
   --color-surface-container: #efeeea;
@@ -25,18 +25,55 @@
 }
 
 @layer base {
+  html,
   body {
+    max-width: 100vw;
+    overflow-x: hidden;
     background-color: var(--color-surface);
     color: var(--color-on-surface);
     font-family: var(--font-body);
-    min-height: max(884px, 100dvh);
+    min-height: 100dvh;
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Ensure all text elements wrap properly */
+  p, h1, h2, h3, h4, h5, h6, span {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
   }
 }
 
 @layer utilities {
+  .layout-container {
+    @apply max-w-screen-md mx-auto px-6 md:px-8 w-full;
+  }
+
+  .text-h1 {
+    font-size: clamp(3rem, 12vw, 7.5rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .text-h2 {
+    font-size: clamp(2.25rem, 8vw, 5rem);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+
+  .text-h3 {
+    font-size: clamp(1.75rem, 6vw, 3rem);
+    line-height: 1.2;
+  }
+
+  .text-body {
+    font-size: clamp(0.9375rem, 2vw, 1.125rem);
+    line-height: 1.7;
+  }
+
   .border-hairline {
     border: 0.5px solid rgba(208, 197, 175, 0.4);
   }

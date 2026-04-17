@@ -21,7 +21,7 @@ export function GallerySection({ images }: { images: string[] }) {
     return [...shuffled.slice(half), ...shuffled.slice(0, half), ...shuffled.slice(half), ...shuffled.slice(0, half)];
   }, [set]);
 
-  const ScrollRow = ({ track, reverse = false, speed = 40 }: { track: string[]; reverse?: boolean; speed?: number }) => {
+    const ScrollRow = ({ track, reverse = false, speed = 40 }: { track: string[]; reverse?: boolean; speed?: number }) => {
     // Unique ID based on reverse prop to prevent animation collisions
     const id = reverse ? 'reverse' : 'forward';
     const animationName = `galleryScroll_${id}`;
@@ -32,14 +32,14 @@ export function GallerySection({ images }: { images: string[] }) {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 1 }}
-        className="relative w-full overflow-hidden mb-6"
+        className="relative w-full overflow-hidden mb-4 md:mb-6"
       >
         {/* Shadow Fades */}
-        <div className="absolute left-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-r from-surface to-transparent pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-l from-surface to-transparent pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 z-10 bg-gradient-to-r from-surface to-transparent pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 z-10 bg-gradient-to-l from-surface to-transparent pointer-events-none" />
 
         <div
-          className="flex gap-4 w-max"
+          className="flex gap-3 md:gap-4 w-max"
           style={{
             animation: `${animationName} ${speed}s linear infinite`,
           }}
@@ -49,7 +49,7 @@ export function GallerySection({ images }: { images: string[] }) {
           {track.map((src, index) => (
             <div
               key={`${src}-${index}`}
-              className="relative h-48 md:h-72 aspect-square flex-shrink-0 cursor-pointer overflow-hidden rounded-sm group bg-stone-100"
+              className="relative h-40 sm:h-52 md:h-72 aspect-square flex-shrink-0 cursor-pointer overflow-hidden rounded-sm group bg-stone-100"
               onClick={() => setSelectedImage(src)}
             >
               <SafeImage
@@ -80,12 +80,12 @@ export function GallerySection({ images }: { images: string[] }) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
         transition={{ duration: 1.2, ease: [0.2, 0.8, 0.2, 1] }}
-        className="text-center mb-16 px-4"
+        className="text-center mb-16 layout-container px-4"
       >
-        <h2 className="font-label text-xs uppercase tracking-extreme text-on-surface-variant/70 mb-4">
+        <h2 className="font-label text-[10px] sm:text-xs uppercase tracking-extreme text-on-surface-variant/70 mb-4">
           Captured
         </h2>
-        <h3 className="font-headline text-4xl md:text-5xl font-light text-on-surface">
+        <h3 className="font-headline text-h2 font-light text-on-surface">
           Moments
         </h3>
       </motion.div>

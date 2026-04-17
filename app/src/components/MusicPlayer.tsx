@@ -1,57 +1,90 @@
 'use client';
-import { useState, useRef, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Play, Pause } from 'lucide-react';
+
+import { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Music, Volume2, VolumeX } from 'lucide-react';
 
 export function MusicPlayer({ musicUrl }: { musicUrl: string }) {
   const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [hasStarted, setHasStarted] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
-    const audio = new Audio(musicUrl);
-    audio.loop = true;
-    audioRef.current = audio;
-
-    const startMusic = () => {
-      audio.play()
-        .then(() => setIsPlaying(true))
-        .catch(() => {});
+    const handleStart = () => {
+      if (audioRef.current) {
+        audioRef.current.play().catch(err => console.error('Playback failed:', err));
+        setIsPlaying(true);
+        setHasStarted(true);
+      }
     };
 
-    document.addEventListener('startWeddingMusic', startMusic);
-
-    return () => {
-      document.removeEventListener('startWeddingMusic', startMusic);
-      audio.pause();
-      audioRef.current = null;
-    };
+    window.addEventListener('startWeddingMusic', handleStart);
+    return () => window.removeEventListener('startWeddingMusic', handleStart);
   }, []);
 
   const togglePlay = () => {
-    if (!audioRef.current) return;
-    
-    if (isPlaying) {
-      audioRef.current.pause();
-    } else {
-      audioRef.current.play().catch(() => {});
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
     }
-    setIsPlaying(!isPlaying);
   };
 
   return (
-    <motion.button
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ delay: 1, duration: 1 }}
-      onClick={togglePlay}
-      className="fixed bottom-[100px] md:bottom-8 right-6 md:right-8 z-50 w-12 h-12 rounded-full bg-surface-container-lowest/80 backdrop-blur-md shadow-[0_12px_32px_rgba(115,92,0,0.1)] flex items-center justify-center text-primary border border-outline-variant/30 hover:bg-surface transition-all duration-300"
-      aria-label={isPlaying ? "Pause music" : "Play music"}
-    >
-      {isPlaying ? (
-        <Pause className="w-5 h-5 fill-current" strokeWidth={1.5} />
-      ) : (
-        <Play className="w-5 h-5 fill-current ml-1" strokeWidth={1.5} />
-      )}
-    </motion.button>
+    <>
+      <audio ref={audioRef} src={musicUrl} loop />
+      
+      <AnimatePresence>
+        {hasStarted && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, x: 50 }}
+            animate={{ opacity: 1, scale: 1, x: 0 }}
+            className="fixed bottom-6 right-6 z-[60]"
+          >
+            <button
+              onClick={togglePlay}
+              className="relative group flex items-center justify-center w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white shadow-2xl hover:bg-white/20 transition-all duration-300"
+            >
+              {/* Pulsing rings when playing */}
+              {isPlaying && (
+                <>
+                  <motion.div
+                    animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="absolute inset-0 bg-white/20 rounded-full"
+                  />
+                  <motion.div
+                    animate={{ scale: [1, 2, 1], opacity: [0.3, 0, 0.3] }}
+                    transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+                    className="absolute inset-0 bg-white/10 rounded-full"
+                  />
+                </>
+              )}
+              
+              <div className="relative z-10 w-5 h-5 flex items-center justify-center">
+                {isPlaying ? (
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                  >
+                    <Music className="w-5 h-5 opacity-90" strokeWidth={1.5} />
+                  </motion.div>
+                ) : (
+                  <VolumeX className="w-5 h-5 opacity-60" strokeWidth={1.5} />
+                )}
+              </div>
+
+              {/* Status Tooltip */}
+              <span className="absolute right-full mr-4 px-3 py-1 bg-black/50 backdrop-blur-sm text-[10px] uppercase tracking-widest text-white whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity rounded-sm pointer-events-none">
+                {isPlaying ? 'Playing Music' : 'Music Paused'}
+              </span>
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }

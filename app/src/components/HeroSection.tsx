@@ -37,17 +37,17 @@ export function HeroSection({ bride, groom, date, heroImage }: HeroSectionProps)
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, ease: [0.2, 0.8, 0.2, 1] }}
-        className="relative z-10 text-center flex flex-col items-center gap-8 mt-20 w-full max-w-4xl mx-auto"
+        className="relative z-10 flex flex-col items-center gap-4 mt-16 w-full max-w-lg mx-auto px-4"
       >
-        <h2 className="font-label text-xs uppercase tracking-ultra text-on-surface-variant/70 mb-4">
+        <h2 className="font-label text-[10px] sm:text-xs uppercase tracking-ultra text-on-surface-variant/70 mb-1">
           Save the Date
         </h2>
-        <h1 className="font-headline text-7xl md:text-9xl font-light tracking-tight text-on-surface leading-[0.9] text-balance">
-          {groom} <br />
-          <span className="text-primary italic text-5xl md:text-7xl font-light mx-4">&</span> <br />
-          {bride}
+        <h1 className="font-headline text-h1 font-light tracking-tight text-on-surface text-center flex flex-col items-center justify-center w-full">
+          <span className="block max-w-[12ch] text-balance">{groom}</span>
+          <span className="text-primary italic text-3xl sm:text-4xl md:text-5xl font-light leading-none -my-1">&</span>
+          <span className="block max-w-[12ch] text-balance">{bride}</span>
         </h1>
-        <p className="font-headline italic text-2xl md:text-3xl text-on-surface-variant/80 mt-12 tracking-wide font-light">
+        <p className="font-headline italic text-lg sm:text-xl md:text-2xl text-on-surface-variant/80 mt-6 tracking-wide font-light text-center">
           {date}
         </p>
       </motion.div>
@@ -57,7 +57,7 @@ export function HeroSection({ bride, groom, date, heroImage }: HeroSectionProps)
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, delay: 0.3, ease: [0.2, 0.8, 0.2, 1] }}
-        className="absolute bottom-12 flex flex-col items-center gap-4 text-on-surface-variant/60"
+        className="absolute bottom-12 hidden md:flex flex-col items-center gap-4 text-on-surface-variant/60"
       >
         <span className="font-label text-[10px] uppercase tracking-ultra pointer-events-none">Scroll</span>
         <div className="w-[1px] h-12 bg-on-surface-variant/30" />

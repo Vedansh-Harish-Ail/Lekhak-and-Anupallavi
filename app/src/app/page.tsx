@@ -54,7 +54,7 @@ export default async function Home() {
       landingPageImage={data.landingPageImage}
       musicUrl={data.musicUrl}
     >
-      <main className="w-full mx-auto overflow-hidden pb-32 md:pb-0 pt-0">
+      <main className="w-full mx-auto overflow-hidden pb-24 md:pb-32 pt-0">
         <Navigation />
         <HeroSection 
           bride={data.bride} 
