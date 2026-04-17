@@ -47,7 +47,7 @@ export function LandingPageWrapper({ bride, groom, landingPageImage, musicUrl, c
             </div>
 
             {/* Content Canvas */}
-            <div className="relative z-10 layout-container flex flex-col items-center text-center pb-20">
+            <div className="relative z-10 w-full flex flex-col items-center text-center pb-8 sm:pb-12">
               {/* Subtitle */}
               <span className="font-label text-[10px] sm:text-xs uppercase tracking-[0.4em] text-primary mb-4 sm:mb-6">
                 The Wedding Celebration
