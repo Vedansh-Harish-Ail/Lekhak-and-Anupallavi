@@ -3,6 +3,17 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import type { WeddingData } from '@/lib/data';
 
+const FloralMotif = () => (
+  <svg width="160" height="160" viewBox="0 0 100 100" fill="none" className="transform group-even:scale-x-100 group-odd:-scale-x-100 opacity-20 text-primary">
+    {/* Elegant botanical leaf swoosh */}
+    <path d="M50 100 C 50 60, 30 50, 15 20 C 45 35, 50 60, 50 100" stroke="currentColor" strokeWidth="1" fill="currentColor" fillOpacity="0.05"/>
+    <path d="M50 85 C 65 65, 80 55, 90 35 C 70 50, 55 65, 50 85" stroke="currentColor" strokeWidth="1" fill="currentColor" fillOpacity="0.05"/>
+    <circle cx="50" cy="95" r="2" fill="currentColor"/>
+    <circle cx="30" cy="45" r="1.5" fill="currentColor"/>
+    <circle cx="70" cy="55" r="1.5" fill="currentColor"/>
+  </svg>
+);
+
 interface EventsSectionProps {
   events: WeddingData['events'];
 }
@@ -60,6 +71,11 @@ export function EventsSection({ events }: EventsSectionProps) {
                 >
                   Open in Google Maps <ArrowRight className="w-[14px] h-[14px]" />
                 </a>
+              </div>
+              
+              {/* Decorative Floral Filler for Empty Space */}
+              <div className="hidden md:flex w-[calc(50%-4rem)] justify-center items-center pointer-events-none select-none top-0 bottom-0">
+                <FloralMotif />
               </div>
             </motion.div>
           ))}
