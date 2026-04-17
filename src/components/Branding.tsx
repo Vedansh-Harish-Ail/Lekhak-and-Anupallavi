@@ -12,7 +12,7 @@ export function Branding() {
         transition={{ duration: 1.2, ease: "easeOut" }}
         className="flex flex-col items-center gap-6"
       >
-        <div className="relative w-32 h-12 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-700">
+        <div className="relative w-32 h-12 opacity-90 transition-all duration-700">
           <Image
             src="/vk-solutions.png"
             alt="VK Solutions"
@@ -22,10 +22,10 @@ export function Branding() {
         </div>
         
         <div className="flex flex-col items-center gap-2">
-          <span className="font-label text-[10px] tracking-[0.3em] uppercase text-outline/50">
+          <span className="font-label text-[10px] tracking-[0.3em] uppercase text-outline/70">
             Digital Experience Crafted by
           </span>
-          <h3 className="font-headline text-lg font-light text-primary/80 tracking-widest uppercase">
+          <h3 className="font-headline text-lg font-light text-primary tracking-widest uppercase">
             VK Solutions
           </h3>
         </div>
@@ -35,13 +35,13 @@ export function Branding() {
             href="https://vk-solutions.com" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="font-label text-xs text-outline/40 hover:text-primary transition-colors tracking-widest uppercase border-b border-transparent hover:border-primary/30 pb-1"
+            className="font-label text-xs text-outline/60 hover:text-primary transition-colors tracking-widest uppercase border-b border-transparent hover:border-primary/30 pb-1"
           >
             Portfolio
           </a>
           <a 
             href="#" 
-            className="font-label text-xs text-outline/40 hover:text-primary transition-colors tracking-widest uppercase border-b border-transparent hover:border-primary/30 pb-1"
+            className="font-label text-xs text-outline/60 hover:text-primary transition-colors tracking-widest uppercase border-b border-transparent hover:border-primary/30 pb-1"
           >
             Contact
           </a>
