@@ -8,6 +8,17 @@ export function MusicPlayer({ musicUrl }: { musicUrl: string }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
+  const isPlayingRef = useRef(false);
+  const hasStartedRef = useRef(false);
+  const shouldResumeRef = useRef(false);
+
+  useEffect(() => {
+    isPlayingRef.current = isPlaying;
+  }, [isPlaying]);
+
+  useEffect(() => {
+    hasStartedRef.current = hasStarted;
+  }, [hasStarted]);
 
   useEffect(() => {
     const handleStart = () => {
@@ -30,23 +41,55 @@ export function MusicPlayer({ musicUrl }: { musicUrl: string }) {
     const pause = () => {
       const audio = audioRef.current;
       if (!audio) return;
+      // Only auto-resume later if the user was actively playing before we paused.
+      shouldResumeRef.current = isPlayingRef.current;
       audio.pause();
       setIsPlaying(false);
     };
 
+    const resumeIfNeeded = () => {
+      if (!shouldResumeRef.current) return;
+      if (!hasStartedRef.current) return;
+
+      const audio = audioRef.current;
+      if (!audio) return;
+
+      audio
+        .play()
+        .then(() => setIsPlaying(true))
+        .catch(err => console.error('Playback failed:', err));
+    };
+
     const handleVisibilityChange = () => {
       // Pause when the tab/app is backgrounded (mobile app switch, tab change, etc).
-      if (document.hidden) pause();
+      if (document.hidden) {
+        pause();
+      } else {
+        resumeIfNeeded();
+      }
+    };
+
+    const handleFocus = () => {
+      resumeIfNeeded();
+    };
+
+    const handlePageShow = () => {
+      // Fires when navigating back/forward (including bfcache restores).
+      resumeIfNeeded();
     };
 
     document.addEventListener('visibilitychange', handleVisibilityChange);
     window.addEventListener('pagehide', pause);
     window.addEventListener('blur', pause);
+    window.addEventListener('focus', handleFocus);
+    window.addEventListener('pageshow', handlePageShow);
 
     return () => {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       window.removeEventListener('pagehide', pause);
       window.removeEventListener('blur', pause);
+      window.removeEventListener('focus', handleFocus);
+      window.removeEventListener('pageshow', handlePageShow);
       pause();
     };
   }, []);

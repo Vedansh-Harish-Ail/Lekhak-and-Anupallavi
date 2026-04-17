@@ -23,8 +23,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL('http://localhost:3000'),
-  title: "The Digital Heirloom",
-  description: "Bespoke digital wedding invitation",
+  title: "VK Solutions",
+  description: "Bespoke digital wedding invitation by VK Solutions",
 };
 
 export default function RootLayout({

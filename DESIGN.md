@@ -1,4 +1,4 @@
-# Design System: The Digital Heirloom
+# Design System: VK Solutions
 
 This design system is a bespoke framework crafted for premium, mobile-first wedding experiences. It departs from the rigid, "templated" nature of digital invitations to embrace the tactile elegance of high-end stationery. By prioritizing emotional storytelling through generous whitespace, tonal depth, and high-contrast editorial typography, we create an interface that feels less like a software application and more like a curated keepsake.
 

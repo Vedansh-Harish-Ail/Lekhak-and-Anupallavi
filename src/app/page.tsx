@@ -16,7 +16,7 @@ export async function generateMetadata() {
 
   if (!data) {
     return {
-      title: 'Digital Heirloom',
+      title: 'VK Solutions',
       description: 'Wedding Invitation',
     };
   }
@@ -67,7 +67,7 @@ export default async function Home() {
         <EventsSection events={data.events} />
         <GallerySection images={data.gallery} />
         <RSVPSection phone={data.rsvp.phone} message={data.rsvp.message} />
-        <Footer />
+        <Footer bride={data.bride} groom={data.groom} />
         <Branding />
         <MusicPlayer musicUrl={data.musicUrl} />
       </main>

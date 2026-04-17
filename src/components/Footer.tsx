@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion';
 import { Flower2 } from 'lucide-react';
 
-export function Footer() {
+export function Footer({ bride, groom }: { bride: string; groom: string }) {
   return (
     <footer className="bg-[#0c0c0c] border-t border-[#2a2a2a] w-full py-24 flex flex-col items-center space-y-8 pb-40 md:pb-24">
       <motion.div
@@ -21,7 +21,7 @@ export function Footer() {
         transition={{ duration: 1 }}
         className="font-headline text-3xl font-light text-primary text-center"
       >
-        With Love, The Digital Heirloom
+        With Love, {bride} &amp; {groom}
       </motion.h2>
       <motion.div
         initial={{ opacity: 0 }}
