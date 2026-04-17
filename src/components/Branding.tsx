@@ -22,7 +22,7 @@ export function Branding() {
         </div>
 
         <div className="flex flex-col items-center gap-2">
-          <span className="font-label text-[10px] tracking-[0.3em] uppercase text-outline/70">
+          <span className="font-label text-[10px] tracking-[0.3em] uppercase text-white">
             Digital Experience Crafted by
           </span>
           <h3 className="font-headline text-lg font-light text-primary tracking-widest uppercase">
