@@ -72,6 +72,26 @@ export function LandingPageWrapper({ bride, groom, landingPageImage, musicUrl, c
               >
                 Open Invitation
               </motion.button>
+
+              {/* Branding */}
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.8, duration: 1.5 }}
+                className="mt-12 flex flex-col items-center gap-3"
+              >
+                <div className="relative w-20 h-8 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+                  <SafeImage 
+                    src="/vk-solutions.png" 
+                    alt="VK Solutions" 
+                    fill 
+                    className="object-contain"
+                  />
+                </div>
+                <span className="font-label text-[9px] tracking-[0.3em] uppercase text-primary/60 font-medium">
+                  VK Solutions
+                </span>
+              </motion.div>
             </div>
           </motion.div>
         )}
