@@ -47,7 +47,7 @@ export function LandingPageWrapper({ bride, groom, landingPageImage, musicUrl, c
             </div>
 
             {/* Content Canvas */}
-            <div className="relative z-10 layout-container flex flex-col items-center text-center">
+            <div className="relative z-10 layout-container flex flex-col items-center text-center pb-20">
               {/* Subtitle */}
               <span className="font-label text-[10px] sm:text-xs uppercase tracking-[0.4em] text-primary mb-4 sm:mb-6">
                 The Wedding Celebration
@@ -72,27 +72,27 @@ export function LandingPageWrapper({ bride, groom, landingPageImage, musicUrl, c
               >
                 Open Invitation
               </motion.button>
-            </div>
 
-            {/* Branding - Moved to Bottom */}
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1, duration: 1.5 }}
-              className="absolute bottom-12 flex flex-col items-center gap-2"
-            >
-              <div className="relative w-16 h-6 opacity-40 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-700">
-                <SafeImage 
-                  src="/vk-solutions.png" 
-                  alt="VK Solutions" 
-                  fill 
-                  className="object-contain"
-                />
-              </div>
-              <span className="font-label text-[8px] tracking-[0.4em] uppercase text-primary/40 font-medium">
-                VK Solutions
-              </span>
-            </motion.div>
+              {/* Branding - Re-integrated into flow */}
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1, duration: 1.5 }}
+                className="mt-12 flex flex-col items-center gap-2"
+              >
+                <div className="relative w-20 h-8 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-700">
+                  <SafeImage 
+                    src="/vk-solutions.png" 
+                    alt="VK Solutions" 
+                    fill 
+                    className="object-contain"
+                  />
+                </div>
+                <span className="font-label text-[9px] tracking-[0.4em] uppercase text-primary/50 font-medium">
+                  VK Solutions
+                </span>
+              </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
