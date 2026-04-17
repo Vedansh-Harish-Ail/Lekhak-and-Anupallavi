@@ -1,6 +1,7 @@
 'use client';
 import { motion } from 'framer-motion';
 import { SafeImage } from './SafeImage';
+import { Countdown } from './Countdown';
 
 interface HeroSectionProps {
   bride: string;
@@ -50,6 +51,7 @@ export function HeroSection({ bride, groom, date, heroImage }: HeroSectionProps)
         <p className="font-headline italic text-lg sm:text-xl md:text-2xl text-on-surface-variant/80 mt-6 tracking-wide font-light text-center">
           {date}
         </p>
+        <Countdown />
       </motion.div>
 
       {/* Scroll Indicator */}
