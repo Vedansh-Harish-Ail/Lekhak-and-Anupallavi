@@ -6,6 +6,8 @@ export interface WeddingData {
   groom: string;
   date: string;
   heroImage: string;
+  landingPageImage: string;
+  musicUrl: string;
   heroMessage: string;
   events: {
     title: string;

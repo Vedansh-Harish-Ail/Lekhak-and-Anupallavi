@@ -48,7 +48,12 @@ export default async function Home() {
   }
 
   return (
-    <LandingPageWrapper bride={data.bride} groom={data.groom}>
+    <LandingPageWrapper 
+      bride={data.bride} 
+      groom={data.groom} 
+      landingPageImage={data.landingPageImage}
+      musicUrl={data.musicUrl}
+    >
       <main className="w-full mx-auto overflow-hidden pb-32 md:pb-0 pt-0">
         <Navigation />
         <HeroSection 

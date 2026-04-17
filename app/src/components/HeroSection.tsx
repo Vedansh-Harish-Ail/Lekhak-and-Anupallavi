@@ -1,6 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
+import { SafeImage } from './SafeImage';
 
 interface HeroSectionProps {
   bride: string;
@@ -14,12 +14,12 @@ export function HeroSection({ bride, groom, date, heroImage }: HeroSectionProps)
     <section className="relative min-h-[90vh] flex flex-col items-center justify-center overflow-hidden px-6 pb-20">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <Image
+        <SafeImage
           src={heroImage}
           alt={`Soft focus romantic wedding background for ${bride} and ${groom}`}
           fill
           priority
-          className="object-cover opacity-60 mix-blend-multiply filter saturate-75"
+          className="w-full h-full opacity-60 mix-blend-multiply filter saturate-75"
           style={{ objectPosition: 'center 35%' }}
         />
         {/* Gradient overlay for text readability */}

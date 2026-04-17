@@ -1,49 +1,55 @@
 'use client';
-
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { SafeImage } from './SafeImage';
 
 interface LandingPageWrapperProps {
-  children: React.ReactNode;
   bride: string;
   groom: string;
+  landingPageImage: string;
+  musicUrl: string;
+  children: React.ReactNode;
 }
 
-export function LandingPageWrapper({ children, bride, groom }: LandingPageWrapperProps) {
-  const [entered, setEntered] = useState(false);
+export function LandingPageWrapper({ bride, groom, landingPageImage, musicUrl, children }: LandingPageWrapperProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
-  const handleEnter = () => {
-    // Signal MusicPlayer to start playing
-    document.dispatchEvent(new CustomEvent('startWeddingMusic'));
-    setEntered(true);
+  const handleOpen = () => {
+    setIsOpen(true);
+    // Explicitly play music from the central source
+    const event = new CustomEvent('startWeddingMusic');
+    window.dispatchEvent(event);
   };
 
   return (
     <>
       <AnimatePresence>
-        {!entered && (
+        {!isOpen && (
           <motion.div
-            key="landing"
-            initial={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 1.5 }}
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0, y: -200 }}
             transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-50 flex flex-col justify-end items-center pb-16 md:pb-32 px-6 overflow-hidden bg-surface font-body text-on-surface"
+            className="fixed inset-0 z-[100] bg-surface flex items-center justify-center overflow-hidden"
           >
-            {/* Hero Background */}
-            <div className="absolute inset-0 w-full h-full z-0">
-              <img
+            {/* Background Image Panel */}
+            <div className="absolute inset-0 z-0">
+              <SafeImage
                 alt="Couple holding hands"
-                className="w-full h-full object-cover"
+                className="w-full h-full"
                 style={{ objectPosition: 'center 35%' }}
-                src="/assets/landing-page-image.jpeg"
+                src={landingPageImage}
+                fill
+                priority
               />
               {/* Tonal Gradient Overlay for Readability */}
               <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/50 to-transparent"></div>
             </div>
+
             {/* Content Canvas */}
-            <div className="relative z-10 flex flex-col items-center text-center max-w-lg mx-auto w-full">
+            <div className="relative z-10 flex flex-col items-center text-center max-w-lg mx-auto w-full px-6">
               {/* Subtitle */}
-              <span className="font-label text-[0.5rem] md:text-xs tracking-[0.3em] uppercase text-primary font-bold drop-shadow-sm mb-3 md:mb-6">
+              <span className="font-label text-[10px] uppercase tracking-[0.4em] text-primary mb-6">
                 The Wedding Celebration
               </span>
 
@@ -58,34 +64,22 @@ export function LandingPageWrapper({ children, bride, groom }: LandingPageWrappe
               </p>
 
               {/* CTA Button */}
-              <button
-                onClick={handleEnter}
-                className="cursor-pointer w-full sm:w-auto px-10 py-5 bg-gradient-to-r from-primary to-primary-container text-on-primary font-label text-[0.7rem] uppercase tracking-[0.2em] font-bold rounded-none hover:opacity-90 transition-opacity flex items-center justify-center gap-3 shadow-[0_12px_32px_rgba(115,92,0,0.3)] group relative overflow-hidden"
+              <motion.button
+                onClick={handleOpen}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-primary text-white font-label text-[10px] uppercase tracking-widest px-10 py-5 rounded-none shadow-2xl hover:bg-primary/90 transition-all"
               >
-                <span className="relative z-10 drop-shadow-sm">Open Invitation</span>
-              </button>
+                Open Invitation
+              </motion.button>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      <motion.div
-        initial={false}
-        animate={{
-          opacity: entered ? 1 : 0,
-          scale: entered ? 1 : 0.95,
-        }}
-        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-        className="relative z-0"
-        style={{
-          visibility: entered ? 'visible' : 'hidden',
-          pointerEvents: entered ? 'auto' : 'none',
-          overflow: entered ? 'visible' : 'hidden',
-          height: entered ? 'auto' : '0px',
-        }}
-      >
+      <div className={isOpen ? 'block' : 'hidden h-screen overflow-hidden'}>
         {children}
-      </motion.div>
+      </div>
     </>
   );
 }
