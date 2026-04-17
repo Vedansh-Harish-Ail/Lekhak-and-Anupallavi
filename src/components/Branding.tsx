@@ -20,7 +20,7 @@ export function Branding() {
             className="object-contain"
           />
         </div>
-        
+
         <div className="flex flex-col items-center gap-2">
           <span className="font-label text-[10px] tracking-[0.3em] uppercase text-outline/70">
             Digital Experience Crafted by
@@ -31,19 +31,30 @@ export function Branding() {
         </div>
 
         <div className="mt-4 flex gap-6">
-          <a 
-            href="https://vk-solutions.com" 
-            target="_blank" 
+          <a
+            href="https://portfolio-vedansh-eta.vercel.app/"
+            target="_blank"
             rel="noopener noreferrer"
             className="font-label text-xs text-outline/60 hover:text-primary transition-colors tracking-widest uppercase border-b border-transparent hover:border-primary/30 pb-1"
           >
             Portfolio
           </a>
-          <a 
-            href="#" 
+          Contact Us
+          <a
+            href="mailto:ailvedansh@gmail.com"
             className="font-label text-xs text-outline/60 hover:text-primary transition-colors tracking-widest uppercase border-b border-transparent hover:border-primary/30 pb-1"
           >
-            Contact
+            Email
+          </a>
+          <a
+            href={`https://wa.me/916282277490?text=${encodeURIComponent(
+              "Hi, I will attend your wedding"
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-label text-xs text-outline/60 hover:text-primary transition-colors tracking-widest uppercase border-b border-transparent hover:border-primary/30 pb-1"
+          >
+            WhatsApp
           </a>
         </div>
       </motion.div>
