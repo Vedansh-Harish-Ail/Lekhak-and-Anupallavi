@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Arjun &amp; Sneha - The Digital Heirloom</title>
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@300;400;500&amp;family=Inter:wght@400;500;600&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <!-- Theme Configuration -->
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "primary-fixed-dim": "#e9c349",
+            "on-error": "#ffffff",
+            "on-primary": "#ffffff",
+            "surface": "#fbf9f5",
+            "secondary-fixed-dim": "#d5c2c2",
+            "inverse-surface": "#30312e",
+            "surface-dim": "#dbdad6",
+            "on-surface": "#1b1c1a",
+            "on-secondary-fixed": "#231919",
+            "on-secondary-container": "#706161",
+            "surface-container-high": "#eae8e4",
+            "on-primary-fixed-variant": "#574500",
+            "secondary": "#695b5b",
+            "outline-variant": "#d0c5af",
+            "inverse-on-surface": "#f2f0ed",
+            "on-tertiary": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-highest": "#e4e2de",
+            "tertiary-container": "#b3b2bc",
+            "inverse-primary": "#e9c349",
+            "tertiary": "#5d5e66",
+            "primary-container": "#d4af37",
+            "on-tertiary-fixed": "#1a1b22",
+            "surface-tint": "#735c00",
+            "secondary-container": "#f2dede",
+            "secondary-fixed": "#f2dede",
+            "outline": "#7f7663",
+            "on-primary-fixed": "#241a00",
+            "surface-variant": "#e4e2de",
+            "background": "#fbf9f5",
+            "primary-fixed": "#ffe088",
+            "on-surface-variant": "#4d4635",
+            "on-secondary-fixed-variant": "#514444",
+            "on-background": "#1b1c1a",
+            "tertiary-fixed": "#e3e1ec",
+            "surface-bright": "#fbf9f5",
+            "on-primary-container": "#554300",
+            "error-container": "#ffdad6",
+            "error": "#ba1a1a",
+            "primary": "#735c00",
+            "tertiary-fixed-dim": "#c6c5cf",
+            "on-secondary": "#ffffff",
+            "on-tertiary-fixed-variant": "#46464e",
+            "on-tertiary-container": "#44454d",
+            "on-error-container": "#93000a",
+            "surface-container-low": "#f5f3ef",
+            "surface-container": "#efeeea"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {},
+          "fontFamily": {
+            "headline": [
+              "Noto Serif"
+            ],
+            "body": [
+              "Plus Jakarta Sans"
+            ],
+            "label": [
+              "Inter"
+            ]
+          }
+        },
+      },
+    }
+  </script>
+  <style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+
+<body class="bg-surface font-body text-on-surface antialiased selection:bg-primary selection:text-on-primary">
+  <!-- Splash Screen Layout -->
+  <main class="relative min-h-screen w-full flex flex-col justify-end items-center pb-20 md:pb-32 px-6 overflow-hidden">
+    <!-- Hero Background -->
+    <div class="absolute inset-0 w-full h-full z-0">
+      <img alt="Couple holding hands" class="w-full h-full object-cover object-center"
+        data-alt="Close up of a couple holding hands outdoors in soft, warm golden hour lighting with a romantic, elegant mood"
+        src="landing-page-image.jpg" />
+      <!-- Tonal Gradient Overlay for Readability -->
+      <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/90 to-transparent"></div>
+    </div>
+    <!-- Content Canvas -->
+    <div class="relative z-10 flex flex-col items-center text-center max-w-lg mx-auto w-full">
+      <!-- Subtitle -->
+      <span
+        class="font-label text-[0.65rem] md:text-xs tracking-[0.3em] uppercase text-primary font-bold drop-shadow-sm mb-6">
+        The Wedding Celebration
+      </span>
+      <!-- Main Headline -->
+      <h1
+        class="font-headline text-5xl md:text-7xl font-bold text-primary leading-tight tracking-tight drop-shadow-md mb-8">
+        Arjun &amp; Sneha
+      </h1>
+      <!-- Body Text -->
+      <p
+        class="font-body text-on-surface font-semibold text-sm md:text-base leading-[1.8] max-w-sm drop-shadow-sm mb-12">
+        Join us as we begin our next chapter, surrounded by the people we love most.
+      </p>
+      <!-- CTA Button -->
+      <button id="enter-heirloom-btn"
+        class="w-full sm:w-auto px-10 py-5 bg-gradient-to-r from-primary to-primary-container text-on-primary font-label text-[0.7rem] uppercase tracking-[0.2em] font-bold rounded-none hover:opacity-90 transition-opacity flex items-center justify-center gap-3 shadow-[0_12px_32px_rgba(115,92,0,0.3)] group relative overflow-hidden">
+        <span class="relative z-10 drop-shadow-sm">Enter The Heirloom</span>
+        <span
+          class="material-symbols-outlined text-sm relative z-10 transform group-hover:translate-x-1 transition-transform"
+          style="font-variation-settings: 'FILL' 0;">arrow_forward</span>
+      </button>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="bg-music" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" loop
+      preload="auto"></audio>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const enterBtn = document.getElementById('enter-heirloom-btn');
+        const bgMusic = document.getElementById('bg-music');
+
+        enterBtn.addEventListener('click', () => {
+          // Play song when clicked
+          if (bgMusic.paused) {
+            bgMusic.play().catch(error => console.log("Audio play failed:", error));
+          } else {
+            bgMusic.pause();
+          }
+
+          // Optional: You can also trigger an animation or navigate here
+        });
+      });
+    </script>
+
+  </main>
+</body>
+
+</html>

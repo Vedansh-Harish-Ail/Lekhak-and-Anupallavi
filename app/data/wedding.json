@@ -1,0 +1,33 @@
+{
+  "bride": "Anupallavi",
+  "groom": "Lekhak",
+  "date": "6th May 2026",
+  "heroImage": "/assets/images/hero.jpg",
+  "heroMessage": "\"I would be delighted if you could join us and bless our new beginning.\"",
+  "events": [
+    {
+      "title": "Sangeeth Ceremony",
+      "date": "2nd May",
+      "time": "7:00 PM onwards",
+      "venue": "AFC ground Meenakshi Nilaya, Ashraya Colony, 3rd block, Katipalla, Surathkal",
+      "mapLink": "https://maps.google.com/?q=AFC+ground+ashraya+colony+katipalla"
+    },
+    {
+      "title": "Wedding Ceremony",
+      "date": "6th May",
+      "time": "10:30 AM",
+      "venue": "Secret Heart Church Hall, Surathkal, Mangalore",
+      "mapLink": "https://maps.google.com/?q=Secret+Heart+Church+hall+surathkal"
+    }
+  ],
+  "gallery": [
+    "/assets/images/gallery-1.jpg",
+    "/assets/images/gallery-2.jpg",
+    "/assets/images/gallery-3.jpg",
+    "/assets/images/gallery-4.jpg"
+  ],
+  "rsvp": {
+    "phone": "919876543210",
+    "message": "Hello Lekhak and Anupallavi! We are so excited to attend your wedding and bless your new beginning."
+  }
+}
