@@ -47,19 +47,19 @@ export function LandingPageWrapper({ bride, groom, landingPageImage, musicUrl, c
             </div>
 
             {/* Content Canvas */}
-            <div className="relative z-10 w-full flex flex-col items-center text-center pb-8 sm:pb-12">
+            <div className="relative z-10 w-full flex flex-col items-center text-center pb-6 sm:pb-10">
               {/* Subtitle */}
-              <span className="font-label text-[10px] sm:text-xs uppercase tracking-[0.4em] text-primary mb-4 sm:mb-6">
+              <span className="font-label text-[9px] uppercase tracking-[0.4em] text-primary mb-2">
                 The Wedding Celebration
               </span>
 
               {/* Main Headline */}
-              <h1 className="font-headline text-h2 font-bold text-primary tracking-tight drop-shadow-md mb-6 md:mb-8 text-balance max-w-[15ch]">
+              <h1 className="font-headline text-h2 font-bold text-primary tracking-tight drop-shadow-md mb-4 text-balance max-w-[15ch]">
                 {bride} &amp; {groom}
               </h1>
 
               {/* Body Text */}
-              <p className="font-body text-on-surface font-medium text-xs sm:text-sm md:text-base leading-relaxed max-w-sm drop-shadow-sm mb-10 md:mb-12 text-balance">
+              <p className="font-body text-on-surface font-medium text-[11px] sm:text-xs leading-relaxed max-w-[280px] drop-shadow-sm mb-6 text-balance">
                 Join us as we begin our next chapter, surrounded by the people we love most.
               </p>
 
@@ -68,7 +68,7 @@ export function LandingPageWrapper({ bride, groom, landingPageImage, musicUrl, c
                 onClick={handleOpen}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-primary text-white font-label text-[10px] sm:text-xs uppercase tracking-widest px-8 sm:px-12 py-4 sm:py-5 rounded-none shadow-2xl hover:bg-primary/90 transition-all active:scale-95"
+                className="bg-primary text-white font-label text-[9px] sm:text-[10px] uppercase tracking-widest px-8 py-4 rounded-none shadow-2xl hover:bg-primary/90 transition-all active:scale-95"
               >
                 Open Invitation
               </motion.button>
@@ -78,9 +78,9 @@ export function LandingPageWrapper({ bride, groom, landingPageImage, musicUrl, c
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1, duration: 1.5 }}
-                className="mt-20 flex flex-col items-center gap-2"
+                className="mt-8 flex flex-col items-center gap-1.5"
               >
-                <div className="relative w-20 h-8 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-700">
+                <div className="relative w-16 h-6 opacity-70 transition-all duration-700">
                   <SafeImage 
                     src="/vk-solutions.png" 
                     alt="VK Solutions" 
@@ -88,7 +88,7 @@ export function LandingPageWrapper({ bride, groom, landingPageImage, musicUrl, c
                     className="object-contain"
                   />
                 </div>
-                <span className="font-label text-[9px] tracking-[0.4em] uppercase text-primary/50 font-medium">
+                <span className="font-label text-[8px] tracking-[0.4em] uppercase text-primary/70 font-medium">
                   VK Solutions
                 </span>
               </motion.div>
