@@ -17,7 +17,7 @@ export function Navigation() {
           <Menu className="w-6 h-6" />
         </button>
         <div className="font-headline text-xl italic font-light text-[#735c00] dark:text-[#d4af37]">
-          WE Invite You
+          We Invite You
         </div>
         <button
           aria-label="Favorite"
