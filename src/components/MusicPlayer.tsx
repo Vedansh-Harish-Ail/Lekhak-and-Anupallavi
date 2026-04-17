@@ -46,7 +46,7 @@ export function MusicPlayer({ musicUrl }: { musicUrl: string }) {
           >
             <button
               onClick={togglePlay}
-              className="relative group flex items-center justify-center w-12 h-12 bg-primary/15 backdrop-blur-md border border-primary/25 rounded-full text-primary shadow-2xl hover:bg-primary/25 transition-all duration-300"
+              className="relative group flex items-center justify-center w-12 h-12 bg-gold/10 backdrop-blur-md border border-gold/20 rounded-full text-gold shadow-2xl hover:bg-gold/20 transition-all duration-300"
             >
               {/* Pulsing rings when playing */}
               {isPlaying && (
