@@ -4,7 +4,7 @@ import { Flower2 } from 'lucide-react';
 
 export function Footer() {
   return (
-    <footer className="bg-surface dark:bg-stone-950 border-t-[0.5px] border-outline-variant/15 w-full py-24 flex flex-col items-center space-y-8 pb-40 md:pb-24">
+    <footer className="bg-[#0c0c0c] border-t border-[#2a2a2a] w-full py-24 flex flex-col items-center space-y-8 pb-40 md:pb-24">
       <motion.div
         initial={{ opacity: 0, rotate: -45 }}
         whileInView={{ opacity: 0.3, rotate: 0 }}

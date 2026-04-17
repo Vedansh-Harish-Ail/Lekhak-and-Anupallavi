@@ -22,10 +22,10 @@ export function Branding() {
         </div>
 
         <div className="flex flex-col items-center gap-2">
-          <span className="font-label text-[10px] tracking-[0.3em] uppercase text-white">
+          <span className="font-label text-[10px] tracking-[0.3em] uppercase text-gold">
             Digital Experience Crafted by
           </span>
-          <h3 className="font-headline text-lg font-light text-white tracking-widest uppercase">
+          <h3 className="font-headline text-lg font-light text-gold tracking-widest uppercase">
             VK Solutions
           </h3>
         </div>
@@ -33,7 +33,7 @@ export function Branding() {
         <div className="mt-4 flex gap-6">
           <a
             href="https://portfolio-vedansh-eta.vercel.app/"
-            target="_blank"
+            target="_blank" 
             rel="noopener noreferrer"
             className="font-label text-xs text-white hover:text-primary transition-colors tracking-widest uppercase border-b border-transparent hover:border-primary/30 pb-1"
           >
@@ -47,7 +47,7 @@ export function Branding() {
           </a>
           <a
             href={`https://wa.me/916282277490?text=${encodeURIComponent(
-              "Hi, I will attend your wedding"
+              "Hi, Got your contact from"
             )}`}
             target="_blank"
             rel="noopener noreferrer"
