@@ -36,7 +36,7 @@ export function MusicPlayer({ musicUrl }: { musicUrl: string }) {
   return (
     <>
       <audio ref={audioRef} src={musicUrl} loop />
-      
+
       <AnimatePresence>
         {hasStarted && (
           <motion.div
@@ -46,7 +46,7 @@ export function MusicPlayer({ musicUrl }: { musicUrl: string }) {
           >
             <button
               onClick={togglePlay}
-              className="relative group flex items-center justify-center w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white shadow-2xl hover:bg-white/20 transition-all duration-300"
+              className="relative group flex items-center justify-center w-12 h-12 bg-primary/15 backdrop-blur-md border border-primary/25 rounded-full text-primary shadow-2xl hover:bg-primary/25 transition-all duration-300"
             >
               {/* Pulsing rings when playing */}
               {isPlaying && (
@@ -63,7 +63,7 @@ export function MusicPlayer({ musicUrl }: { musicUrl: string }) {
                   />
                 </>
               )}
-              
+
               <div className="relative z-10 w-5 h-5 flex items-center justify-center">
                 {isPlaying ? (
                   <motion.div

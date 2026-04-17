@@ -13,11 +13,7 @@ export function Countdown() {
     past: false,
   });
 
-  const [isMounted, setIsMounted] = useState(false);
-
   useEffect(() => {
-    setIsMounted(true);
-
     const updateTimer = () => {
       const now = new Date().getTime();
       const distance = TARGET_DATE - now;
@@ -42,13 +38,14 @@ export function Countdown() {
       });
     };
 
-    updateTimer();
+    const frame = requestAnimationFrame(updateTimer);
     const timer = setInterval(updateTimer, 1000);
 
-    return () => clearInterval(timer);
+    return () => {
+      cancelAnimationFrame(frame);
+      clearInterval(timer);
+    };
   }, []);
-
-  if (!isMounted) return null;
 
   if (timeLeft.past) {
     return (
