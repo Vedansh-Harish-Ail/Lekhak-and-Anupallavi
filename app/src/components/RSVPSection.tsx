@@ -17,8 +17,8 @@ export function RSVPSection({ phone, message }: RSVPSectionProps) {
   return (
     <section id="rsvp" className="py-32 md:py-48 px-6 bg-stone-light relative overflow-hidden flex items-center justify-center">
       <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        whileInView={{ opacity: 1, scale: 1 }}
+        initial={{ opacity: 0, scale: 0.9, y: 40 }}
+        whileInView={{ opacity: 1, scale: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 1.2, ease: [0.2, 0.8, 0.2, 1] }}
         className="max-w-xl w-full mx-auto text-center relative z-10 p-12 md:p-20 bg-surface/60 backdrop-blur-md border-hairline shadow-[0_12px_32px_rgba(115,92,0,0.03)]"

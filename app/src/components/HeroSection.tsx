@@ -14,14 +14,21 @@ export function HeroSection({ bride, groom, date, heroImage }: HeroSectionProps)
     <section className="relative min-h-[90vh] flex flex-col items-center justify-center overflow-hidden px-6 pb-20">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <SafeImage
-          src={heroImage}
-          alt={`Soft focus romantic wedding background for ${bride} and ${groom}`}
-          fill
-          priority
-          className="w-full h-full opacity-60 mix-blend-multiply filter saturate-75"
-          style={{ objectPosition: 'center 35%' }}
-        />
+        <motion.div
+          initial={{ scale: 1.1, opacity: 0 }}
+          animate={{ scale: 1, opacity: 0.6 }}
+          transition={{ duration: 1.5, ease: [0.2, 0.8, 0.2, 1] }}
+          className="absolute inset-0"
+        >
+          <SafeImage
+            src={heroImage}
+            alt={`Soft focus romantic wedding background for ${bride} and ${groom}`}
+            fill
+            priority
+            className="w-full h-full mix-blend-multiply filter saturate-75 object-cover"
+            style={{ objectPosition: 'center 35%' }}
+          />
+        </motion.div>
         {/* Gradient overlay for text readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-surface/40 via-surface/10 to-surface pointer-events-none" />
       </div>

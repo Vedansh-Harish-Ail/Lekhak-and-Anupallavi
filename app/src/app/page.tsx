@@ -67,7 +67,7 @@ export default async function Home() {
         <GallerySection images={data.gallery} />
         <RSVPSection phone={data.rsvp.phone} message={data.rsvp.message} />
         <Footer />
-        <MusicPlayer />
+        <MusicPlayer musicUrl={data.musicUrl} />
       </main>
     </LandingPageWrapper>
   );

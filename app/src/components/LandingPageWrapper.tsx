@@ -36,7 +36,7 @@ export function LandingPageWrapper({ bride, groom, landingPageImage, musicUrl, c
             <div className="absolute inset-0 z-0">
               <SafeImage
                 alt="Couple holding hands"
-                className="w-full h-full"
+                className="w-full h-full object-cover"
                 style={{ objectPosition: 'center 35%' }}
                 src={landingPageImage}
                 fill

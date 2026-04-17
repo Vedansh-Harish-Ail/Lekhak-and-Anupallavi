@@ -7,8 +7,8 @@ import { SafeImage } from './SafeImage';
 export function GallerySection({ images }: { images: string[] }) {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-  // Ensure enough images to fill viewport seamlessly — repeat until we have at least 15 per set
-  const multiplier = Math.ceil(15 / Math.max(images.length, 1));
+  // Reduce multiplier for better performance with high-res images
+  const multiplier = Math.ceil(8 / Math.max(images.length, 1));
   const set = useMemo(() => Array.from({ length: multiplier }, () => images).flat(), [images, multiplier]);
   
   // Row 1: base set
@@ -25,13 +25,19 @@ export function GallerySection({ images }: { images: string[] }) {
     const animationName = useMemo(() => `galleryScroll_${reverse ? 'rev' : 'fwd'}_${Math.random().toString(36).substr(2, 5)}`, [reverse]);
     
     return (
-      <div className="relative w-full overflow-hidden mb-6">
+      <motion.div 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1 }}
+        className="relative w-full overflow-hidden mb-6"
+      >
         {/* Shadow Fades */}
         <div className="absolute left-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-r from-surface to-transparent pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-l from-surface to-transparent pointer-events-none" />
 
         <div
-          className="flex gap-4 w-max will-change-transform"
+          className="flex gap-4 w-max"
           style={{
             animation: `${animationName} ${speed}s linear infinite`,
           }}

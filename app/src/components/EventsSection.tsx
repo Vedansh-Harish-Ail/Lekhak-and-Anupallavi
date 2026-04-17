@@ -106,10 +106,10 @@ export function EventsSection({ events }: EventsSectionProps) {
           {events.map((event, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1.2, ease: [0.2, 0.8, 0.2, 1], delay: index * 0.1 }}
+              transition={{ duration: 1, ease: [0.2, 0.8, 0.2, 1], delay: index * 0.2 }}
               className="relative flex flex-col md:flex-row items-center justify-between md:odd:flex-row-reverse group"
             >
               {/* Point Node */}

@@ -28,15 +28,16 @@ export function SafeImage({
   }, [src]);
 
   return (
-    <div className={`relative overflow-hidden ${className}`}>
+    <div className={`relative overflow-hidden w-full h-full ${className || ''}`}>
       <Image
         {...props}
         src={imgSrc}
         alt={alt}
         className={`
           duration-700 ease-in-out
-          ${isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}
-          ${props.className || ''}
+          ${isLoaded ? 'scale-100' : 'scale-105'}
+          ${props.fill ? 'object-cover' : ''}
+          ${className || ''}
         `}
         onLoad={() => setIsLoaded(true)}
         onError={() => {

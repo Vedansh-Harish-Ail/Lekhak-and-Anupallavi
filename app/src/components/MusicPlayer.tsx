@@ -3,12 +3,12 @@ import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Play, Pause } from 'lucide-react';
 
-export function MusicPlayer() {
+export function MusicPlayer({ musicUrl }: { musicUrl: string }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    const audio = new Audio('/assets/music/Romantic-Wedding-Mashup-2025-SICKVED-Best-Wedding-Songs.m4a');
+    const audio = new Audio(musicUrl);
     audio.loop = true;
     audioRef.current = audio;
 
