@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Music, Volume2, VolumeX } from 'lucide-react';
+import { Music, VolumeX } from 'lucide-react';
 
 export function MusicPlayer({ musicUrl }: { musicUrl: string }) {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -12,9 +12,13 @@ export function MusicPlayer({ musicUrl }: { musicUrl: string }) {
   useEffect(() => {
     const handleStart = () => {
       if (audioRef.current) {
-        audioRef.current.play().catch(err => console.error('Playback failed:', err));
-        setIsPlaying(true);
-        setHasStarted(true);
+        audioRef.current
+          .play()
+          .then(() => {
+            setIsPlaying(true);
+            setHasStarted(true);
+          })
+          .catch(err => console.error('Playback failed:', err));
       }
     };
 
@@ -22,15 +26,45 @@ export function MusicPlayer({ musicUrl }: { musicUrl: string }) {
     return () => window.removeEventListener('startWeddingMusic', handleStart);
   }, []);
 
+  useEffect(() => {
+    const pause = () => {
+      const audio = audioRef.current;
+      if (!audio) return;
+      audio.pause();
+      setIsPlaying(false);
+    };
+
+    const handleVisibilityChange = () => {
+      // Pause when the tab/app is backgrounded (mobile app switch, tab change, etc).
+      if (document.hidden) pause();
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    window.addEventListener('pagehide', pause);
+    window.addEventListener('blur', pause);
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      window.removeEventListener('pagehide', pause);
+      window.removeEventListener('blur', pause);
+      pause();
+    };
+  }, []);
+
   const togglePlay = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-      } else {
-        audioRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (isPlaying) {
+      audio.pause();
+      setIsPlaying(false);
+      return;
     }
+
+    audio
+      .play()
+      .then(() => setIsPlaying(true))
+      .catch(err => console.error('Playback failed:', err));
   };
 
   return (
