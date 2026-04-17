@@ -8,38 +8,20 @@ export function MusicPlayer() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    // Only instantiate Audio on client side once
     const audio = new Audio('/assets/music/Romantic-Wedding-Mashup-2025-SICKVED-Best-Wedding-Songs.m4a');
     audio.loop = true;
     audioRef.current = audio;
 
-    const playOnInteraction = () => {
-      if (audio.paused) {
-        const playPromise = audio.play();
-        if (playPromise !== undefined) {
-          playPromise.then(() => {
-            setIsPlaying(true);
-            // Only remove listeners if playback successfully started
-            document.removeEventListener('click', playOnInteraction);
-            document.removeEventListener('touchstart', playOnInteraction);
-            document.removeEventListener('scroll', playOnInteraction);
-          }).catch(() => {
-            // Silently catch NotAllowedError so Next.js doesn't show a red overlay
-          });
-        }
-      }
+    const startMusic = () => {
+      audio.play()
+        .then(() => setIsPlaying(true))
+        .catch(() => {});
     };
 
-    // Attach interaction listeners
-    document.addEventListener('click', playOnInteraction);
-    document.addEventListener('touchstart', playOnInteraction);
-    document.addEventListener('scroll', playOnInteraction);
+    document.addEventListener('startWeddingMusic', startMusic);
 
     return () => {
-      document.removeEventListener('click', playOnInteraction);
-      document.removeEventListener('touchstart', playOnInteraction);
-      document.removeEventListener('scroll', playOnInteraction);
-      // Cleanup to prevent memory leaks
+      document.removeEventListener('startWeddingMusic', startMusic);
       audio.pause();
       audioRef.current = null;
     };

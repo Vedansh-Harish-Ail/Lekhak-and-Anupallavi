@@ -2,7 +2,7 @@
   "bride": "Anupallavi",
   "groom": "Lekhak",
   "date": "6th May 2026",
-  "heroImage": "/assets/images/hero.jpg",
+  "heroImage": "/assets/images/hero.jpeg",
   "heroMessage": "\"I would be delighted if you could join us and bless our new beginning.\"",
   "events": [
     {
@@ -21,10 +21,11 @@
     }
   ],
   "gallery": [
-    "/assets/images/gallery-1.jpg",
-    "/assets/images/gallery-2.jpg",
-    "/assets/images/gallery-3.jpg",
-    "/assets/images/gallery-4.jpg"
+    "/assets/images/DSC09098.jpg",
+    "/assets/images/DSC09182.jpg",
+    "/assets/images/DSC09293.jpg",
+    "/assets/images/DSC09366.jpg",
+    "/assets/images/DSC09376.jpg"
   ],
   "rsvp": {
     "phone": "919876543210",
