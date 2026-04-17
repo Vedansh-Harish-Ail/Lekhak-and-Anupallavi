@@ -39,7 +39,6 @@ export function Branding() {
           >
             Portfolio
           </a>
-          Contact Us
           <a
             href="mailto:ailvedansh@gmail.com"
             className="font-label text-xs text-white hover:text-primary transition-colors tracking-widest uppercase border-b border-transparent hover:border-primary/30 pb-1"
@@ -52,7 +51,7 @@ export function Branding() {
             )}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-label text-xs text-outline/60 hover:text-primary transition-colors tracking-widest uppercase border-b border-transparent hover:border-primary/30 pb-1"
+            className="font-label text-xs text-white hover:text-primary transition-colors tracking-widest uppercase border-b border-transparent hover:border-primary/30 pb-1"
           >
             WhatsApp
           </a>
