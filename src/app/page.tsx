@@ -7,6 +7,7 @@ import { RSVPSection } from '@/components/RSVPSection';
 import { MusicPlayer } from '@/components/MusicPlayer';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
+import { Branding } from '@/components/Branding';
 import { LandingPageWrapper } from '@/components/LandingPageWrapper';
 
 // Generate dynamic metadata for the single wedding
@@ -67,6 +68,7 @@ export default async function Home() {
         <GallerySection images={data.gallery} />
         <RSVPSection phone={data.rsvp.phone} message={data.rsvp.message} />
         <Footer />
+        <Branding />
         <MusicPlayer musicUrl={data.musicUrl} />
       </main>
     </LandingPageWrapper>
