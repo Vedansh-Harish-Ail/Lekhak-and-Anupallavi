@@ -22,7 +22,9 @@ export function GallerySection({ images }: { images: string[] }) {
   }, [set]);
 
   const ScrollRow = ({ track, reverse = false, speed = 40 }: { track: string[]; reverse?: boolean; speed?: number }) => {
-    const animationName = useMemo(() => `galleryScroll_${reverse ? 'rev' : 'fwd'}_${Math.random().toString(36).substr(2, 5)}`, [reverse]);
+    // Unique ID based on reverse prop to prevent animation collisions
+    const id = reverse ? 'reverse' : 'forward';
+    const animationName = `galleryScroll_${id}`;
     
     return (
       <motion.div 
@@ -63,11 +65,11 @@ export function GallerySection({ images }: { images: string[] }) {
 
         <style jsx>{`
           @keyframes ${animationName} {
-            0%   { transform: translate3d(${reverse ? '-50%' : '0'}, 0, 0); }
-            100% { transform: translate3d(${reverse ? '0' : '-50%'}, 0, 0); }
+            0%   { transform: translate3d(${reverse ? '-50%' : '0px'}, 0, 0); }
+            100% { transform: translate3d(${reverse ? '0px' : '-50%'}, 0, 0); }
           }
         `}</style>
-      </div>
+      </motion.div>
     );
   };
 
