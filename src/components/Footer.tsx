@@ -4,7 +4,7 @@ import { Flower2 } from 'lucide-react';
 
 export function Footer() {
   return (
-    <footer className="bg-surface dark:bg-stone-950 border-t-[0.5px] border-outline-variant/15 w-full py-24 flex flex-col items-center space-y-8 max-w-2xl mx-auto px-8 pb-40 md:pb-24">
+    <footer className="bg-surface dark:bg-stone-950 border-t-[0.5px] border-outline-variant/15 w-full py-24 flex flex-col items-center space-y-8 pb-40 md:pb-24">
       <motion.div
         initial={{ opacity: 0, rotate: -45 }}
         whileInView={{ opacity: 0.3, rotate: 0 }}
@@ -14,7 +14,7 @@ export function Footer() {
       >
         <Flower2 className="w-10 h-10" strokeWidth={1} />
       </motion.div>
-      <motion.h2 
+      <motion.h2
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -23,7 +23,7 @@ export function Footer() {
       >
         With Love, The Digital Heirloom
       </motion.h2>
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
