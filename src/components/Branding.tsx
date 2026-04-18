@@ -46,12 +46,12 @@ export function Branding() {
             Email
           </a>
           <a
-            href={`https://wa.me/916282277490?text=${encodeURIComponent(
-              "Hi, Got your contact from Anupallavi & Lekhak Wedding Invitation"
+            href={`https://wa.me/${data.rsvp.phone}?text=${encodeURIComponent(
+              `Hi, Got your contact from ${data.bride} & ${data.groom}'s Wedding Invitation`
             )}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-label text-xs text-white hover:text-primary transition-colors tracking-widest uppercase border-b border-transparent hover:border-primary/30 pb-1"
+            className="font-label text-xs text-white hover:text-[#D4AF37] transition-colors tracking-widest uppercase border-b border-transparent hover:border-[#D4AF37]/30 pb-1"
           >
             WhatsApp
           </a>
