@@ -54,7 +54,7 @@ export function SafeImage({
       {hasError && (
         <div className="absolute inset-0 bg-stone-200 flex items-center justify-center p-4 text-center">
           <span className="text-[10px] uppercase tracking-widest text-on-surface-variant/40">
-            Image Unavailable
+            Image Unavailable....!
           </span>
         </div>
       )}
