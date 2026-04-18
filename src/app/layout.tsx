@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Noto_Serif, Plus_Jakarta_Sans, Inter } from "next/font/google";
 import "./globals.css";
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics } from "@vercel/analytics/react";
 
 const notoSerif = Noto_Serif({
   variable: "--font-noto-serif",
@@ -38,7 +38,12 @@ export default function RootLayout({
       lang="en"
       className={`${notoSerif.variable} ${plusJakartaSans.variable} ${inter.variable} antialiased`}
     >
-      <body className="font-body min-h-full flex flex-col tracking-wide">{children}</body>
+      <body className="font-body min-h-full flex flex-col tracking-wide">
+        {children}
+
+        {/* ✅ ADD THIS */}
+        <Analytics />
+      </body>
     </html>
   );
 }
