@@ -47,9 +47,7 @@ export default function RootLayout({
 
         {/* Vercel Analytics */}
         <Analytics />
-        <h1 style={{ color: "red", position: "fixed", top: 0 }}>
-          TEST DEPLOY
-        </h1>
+
       </body>
     </html>
   );
