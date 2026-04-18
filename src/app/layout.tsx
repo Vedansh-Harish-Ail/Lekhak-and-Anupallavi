@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Noto_Serif, Plus_Jakarta_Sans, Inter } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
+import Script from "next/script";
 
 const notoSerif = Noto_Serif({
   variable: "--font-noto-serif",
@@ -23,7 +24,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('http://localhost:3000'),
+  metadataBase: new URL("https://lekhak-and-anupallavi.vercel.app"),
   title: "VK Solutions",
   description: "Bespoke digital wedding invitation by VK Solutions",
 };
@@ -38,9 +39,26 @@ export default function RootLayout({
       lang="en"
       className={`${notoSerif.variable} ${plusJakartaSans.variable} ${inter.variable} antialiased`}
     >
+      <head>
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-4F0T7KGBH2"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-4F0T7KGBH2');
+          `}
+        </Script>
+      </head>
+
       <body className="font-body min-h-full flex flex-col tracking-wide">
         {children}
 
+        {/* Vercel Analytics */}
         <Analytics />
       </body>
     </html>
