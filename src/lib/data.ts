@@ -28,7 +28,7 @@ export async function getWeddingData(): Promise<WeddingData | null> {
     const dataPath = path.join(process.cwd(), 'data', `wedding.json`);
     const fileContents = fs.readFileSync(dataPath, 'utf8');
     return JSON.parse(fileContents) as WeddingData;
-  } catch (error) {
+  } catch {
     return null;
   }
 }

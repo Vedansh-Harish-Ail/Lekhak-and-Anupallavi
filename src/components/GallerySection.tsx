@@ -4,6 +4,70 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 import { SafeImage } from './SafeImage';
 
+const ScrollRow = ({ 
+  track, 
+  reverse = false, 
+  speed = 40,
+  imagesLength,
+  onImageSelect
+}: { 
+  track: string[]; 
+  reverse?: boolean; 
+  speed?: number;
+  imagesLength: number;
+  onImageSelect: (src: string) => void;
+}) => {
+  // Unique ID based on reverse prop to prevent animation collisions
+  const id = reverse ? 'reverse' : 'forward';
+  const animationName = `galleryScroll_${id}`;
+  
+  return (
+    <motion.div 
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 1 }}
+      className="relative w-full overflow-hidden mb-4 md:mb-6"
+    >
+      {/* Shadow Fades */}
+      <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 z-10 bg-gradient-to-r from-surface to-transparent pointer-events-none" />
+      <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 z-10 bg-gradient-to-l from-surface to-transparent pointer-events-none" />
+
+      <div
+        className="flex gap-3 md:gap-4 w-max"
+        style={{
+          animation: `${animationName} ${speed}s linear infinite`,
+        }}
+        onMouseEnter={e => (e.currentTarget.style.animationPlayState = 'paused')}
+        onMouseLeave={e => (e.currentTarget.style.animationPlayState = 'running')}
+      >
+        {track.map((src, index) => (
+          <div
+            key={`${src}-${index}`}
+            className="relative h-40 sm:h-52 md:h-72 aspect-square flex-shrink-0 cursor-pointer overflow-hidden rounded-sm group bg-stone-100"
+            onClick={() => onImageSelect(src)}
+          >
+            <SafeImage
+              src={src}
+              alt={`Wedding moment ${(index % imagesLength) + 1}`}
+              fill
+              className="object-cover saturate-75 group-hover:saturate-100 group-hover:scale-105 transition-all duration-1000"
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </div>
+
+      <style jsx>{`
+        @keyframes ${animationName} {
+          0%   { transform: translate3d(${reverse ? '-50%' : '0px'}, 0, 0); }
+          100% { transform: translate3d(${reverse ? '0px' : '-50%'}, 0, 0); }
+        }
+      `}</style>
+    </motion.div>
+  );
+};
+
 export function GallerySection({ images }: { images: string[] }) {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
@@ -21,57 +85,7 @@ export function GallerySection({ images }: { images: string[] }) {
     return [...shuffled.slice(half), ...shuffled.slice(0, half), ...shuffled.slice(half), ...shuffled.slice(0, half)];
   }, [set]);
 
-    const ScrollRow = ({ track, reverse = false, speed = 40 }: { track: string[]; reverse?: boolean; speed?: number }) => {
-    // Unique ID based on reverse prop to prevent animation collisions
-    const id = reverse ? 'reverse' : 'forward';
-    const animationName = `galleryScroll_${id}`;
-    
-    return (
-      <motion.div 
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1 }}
-        className="relative w-full overflow-hidden mb-4 md:mb-6"
-      >
-        {/* Shadow Fades */}
-        <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 z-10 bg-gradient-to-r from-surface to-transparent pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 z-10 bg-gradient-to-l from-surface to-transparent pointer-events-none" />
 
-        <div
-          className="flex gap-3 md:gap-4 w-max"
-          style={{
-            animation: `${animationName} ${speed}s linear infinite`,
-          }}
-          onMouseEnter={e => (e.currentTarget.style.animationPlayState = 'paused')}
-          onMouseLeave={e => (e.currentTarget.style.animationPlayState = 'running')}
-        >
-          {track.map((src, index) => (
-            <div
-              key={`${src}-${index}`}
-              className="relative h-40 sm:h-52 md:h-72 aspect-square flex-shrink-0 cursor-pointer overflow-hidden rounded-sm group bg-stone-100"
-              onClick={() => setSelectedImage(src)}
-            >
-              <SafeImage
-                src={src}
-                alt={`Wedding moment ${(index % images.length) + 1}`}
-                fill
-                className="object-cover saturate-75 group-hover:saturate-100 group-hover:scale-105 transition-all duration-1000"
-                loading="lazy"
-              />
-            </div>
-          ))}
-        </div>
-
-        <style jsx>{`
-          @keyframes ${animationName} {
-            0%   { transform: translate3d(${reverse ? '-50%' : '0px'}, 0, 0); }
-            100% { transform: translate3d(${reverse ? '0px' : '-50%'}, 0, 0); }
-          }
-        `}</style>
-      </motion.div>
-    );
-  };
 
   return (
     <section className="py-24 md:py-36 bg-surface overflow-hidden">
@@ -91,10 +105,10 @@ export function GallerySection({ images }: { images: string[] }) {
       </motion.div>
 
       {/* Row 1 — Left to Right */}
-      <ScrollRow track={track1} />
+      <ScrollRow track={track1} imagesLength={images.length} onImageSelect={setSelectedImage} />
       
       {/* Row 2 — Right to Left */}
-      <ScrollRow track={track2} reverse speed={45} />
+      <ScrollRow track={track2} reverse speed={45} imagesLength={images.length} onImageSelect={setSelectedImage} />
 
       {/* Lightbox Modal */}
       <AnimatePresence>

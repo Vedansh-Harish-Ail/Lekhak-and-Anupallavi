@@ -1,5 +1,5 @@
 'use client';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SafeImage } from './SafeImage';
 
@@ -11,9 +11,8 @@ interface LandingPageWrapperProps {
   children: React.ReactNode;
 }
 
-export function LandingPageWrapper({ bride, groom, landingPageImage, musicUrl, children }: LandingPageWrapperProps) {
+export function LandingPageWrapper({ bride, groom, landingPageImage, children }: LandingPageWrapperProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const audioRef = useRef<HTMLAudioElement>(null);
 
   const handleOpen = () => {
     setIsOpen(true);

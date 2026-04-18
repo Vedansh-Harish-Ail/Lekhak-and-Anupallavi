@@ -1,6 +1,5 @@
 'use client';
-import { Heart, Home, Calendar, Mail } from 'lucide-react';
-import Link from 'next/link';
+
 
 export function Navigation() {
   return (

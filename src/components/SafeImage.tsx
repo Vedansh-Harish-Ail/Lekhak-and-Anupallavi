@@ -1,7 +1,7 @@
 'use client';
 
 import Image, { ImageProps } from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 interface SafeImageProps extends ImageProps {
   fallbackSrc?: string;
@@ -19,13 +19,16 @@ export function SafeImage({
   ...props 
 }: SafeImageProps) {
   const [imgSrc, setImgSrc] = useState(src);
+  const [prevSrc, setPrevSrc] = useState(src);
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
 
-  useEffect(() => {
+  if (src !== prevSrc) {
+    setPrevSrc(src);
     setImgSrc(src);
     setHasError(false);
-  }, [src]);
+    setIsLoaded(false);
+  }
 
   return (
     <div className={`relative overflow-hidden w-full h-full ${className || ''}`}>
