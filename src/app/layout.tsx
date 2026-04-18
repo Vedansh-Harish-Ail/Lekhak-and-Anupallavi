@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Noto_Serif, Plus_Jakarta_Sans, Inter } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
-import Script from "next/script";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const notoSerif = Noto_Serif({
   variable: "--font-noto-serif",
@@ -31,47 +31,19 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html
       lang="en"
       className={`${notoSerif.variable} ${plusJakartaSans.variable} ${inter.variable} antialiased`}
     >
-      <head>
-        {/* Google Analytics */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-4F0T7KGBH2"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-4F0T7KGBH2');
-          `}
-        </Script>
-      </head>
-
       <body className="font-body min-h-full flex flex-col tracking-wide">
-
         {children}
 
-        {/* ✅ Google Analytics FIX */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-4F0T7KGBH2"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-4F0T7KGBH2');
-    `}
-        </Script>
+        {/* ✅ Google Analytics (OFFICIAL WAY) */}
+        <GoogleAnalytics gaId="G-4F0T7KGBH2" />
 
         {/* Vercel Analytics */}
         <Analytics />
