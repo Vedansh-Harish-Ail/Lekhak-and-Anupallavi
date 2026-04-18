@@ -55,7 +55,7 @@ export function LandingPageWrapper({ bride, groom, landingPageImage, musicUrl, c
 
               {/* Main Headline */}
               <h1 className="font-headline text-h2 font-bold text-primary tracking-tight drop-shadow-md mb-3 text-balance max-w-[15ch]">
-                {bride} &amp; {groom}
+                {groom} &amp; {bride}
               </h1>
 
               {/* Body Text */}
