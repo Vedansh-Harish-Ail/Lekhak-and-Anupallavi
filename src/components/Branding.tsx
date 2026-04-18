@@ -47,7 +47,7 @@ export function Branding() {
           </a>
           <a
             href={`https://wa.me/916282277490?text=${encodeURIComponent(
-              "Hi, Got your contact from Anupallavi & Lekhak Wdding Invitation"
+              "Hi, Got your contact from Anupallavi & Lekhak Wedding Invitation"
             )}`}
             target="_blank"
             rel="noopener noreferrer"
