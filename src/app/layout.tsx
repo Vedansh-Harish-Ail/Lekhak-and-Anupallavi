@@ -41,7 +41,6 @@ export default function RootLayout({
       <body className="font-body min-h-full flex flex-col tracking-wide">
         {children}
 
-        {/* ✅ ADD THIS */}
         <Analytics />
       </body>
     </html>
