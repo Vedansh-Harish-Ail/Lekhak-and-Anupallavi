@@ -46,7 +46,7 @@ export function HeroSection({ bride, groom, date, heroImage }: HeroSectionProps)
         <h1 className="font-headline text-h1 font-light tracking-tight text-on-surface text-center flex flex-col items-center justify-center w-full">
           <span className="block max-w-[12ch] text-balance">{groom}</span>
           <span className="text-primary italic text-3xl sm:text-4xl md:text-5xl font-light leading-none -my-1">&</span>
-          <span className="block max-w-[12ch] text-balance">{bride}</span>
+          <span className="block max-w-[12ch] md:max-w-none whitespace-normal md:whitespace-nowrap">{bride}</span>
         </h1>
         <p className="font-headline italic text-lg sm:text-xl md:text-2xl text-on-surface-variant/80 mt-6 tracking-wide font-light text-center">
           {date}
