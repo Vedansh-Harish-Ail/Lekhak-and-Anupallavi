@@ -32,14 +32,14 @@ export function Branding() {
         </div>
 
         <div className="mt-4 flex gap-6">
-          <a
+          {/*<a
             href="https://portfolio-vedansh-eta.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
             className="font-label text-xs text-white hover:text-primary transition-colors tracking-widest uppercase border-b border-transparent hover:border-primary/30 pb-1"
           >
             Portfolio
-          </a>
+          </a>*/}
           <a
             href="mailto:ailvedansh@gmail.com"
             className="font-label text-xs text-white hover:text-primary transition-colors tracking-widest uppercase border-b border-transparent hover:border-primary/30 pb-1"
