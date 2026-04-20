@@ -47,7 +47,7 @@ export function Branding() {
             Email
           </a>
           <a
-            href={`https://wa.me/${data.rsvp.phone}?text=${encodeURIComponent(
+            href={`https://wa.me/916282277490?text=${encodeURIComponent(
               `Hi, Got your contact from ${data.bride} & ${data.groom}'s Wedding Invitation`
             )}`}
             target="_blank"
