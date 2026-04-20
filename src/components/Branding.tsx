@@ -41,7 +41,7 @@ export function Branding() {
             Portfolio
           </a>*/}
           <a
-            href="mailto:ailvedansh@gmail.com"
+            href="mailto:[EMAIL_ADDRESS]"
             className="font-label text-xs text-white hover:text-primary transition-colors tracking-widest uppercase border-b border-transparent hover:border-primary/30 pb-1"
           >
             Email
