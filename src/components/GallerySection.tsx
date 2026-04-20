@@ -9,16 +9,18 @@ const ScrollRow = ({
   reverse = false, 
   speed = 40,
   imagesLength,
-  onImageSelect
+  onImageSelect,
+  rowIndex = 0
 }: { 
   track: string[]; 
   reverse?: boolean; 
   speed?: number;
   imagesLength: number;
   onImageSelect: (src: string) => void;
+  rowIndex?: number;
 }) => {
-  // Unique ID based on reverse prop to prevent animation collisions
-  const id = reverse ? 'reverse' : 'forward';
+  // Unique ID to prevent animation collisions
+  const id = `row_${rowIndex}_${reverse ? 'rev' : 'fwd'}`;
   const animationName = `galleryScroll_${id}`;
   
   return (
@@ -75,17 +77,30 @@ export function GallerySection({ images }: { images: string[] }) {
   const multiplier = Math.ceil(8 / Math.max(images.length, 1));
   const set = useMemo(() => Array.from({ length: multiplier }, () => images).flat(), [images, multiplier]);
   
-  // Row 1: base set
-  const track1 = useMemo(() => [...set, ...set], [set]);
-  
-  // Row 2: interleaved/shuffled for variety
-  const track2 = useMemo(() => {
-    const shuffled = [...set];
-    const half = Math.floor(shuffled.length / 2);
-    return [...shuffled.slice(half), ...shuffled.slice(0, half), ...shuffled.slice(half), ...shuffled.slice(0, half)];
-  }, [set]);
+  const tracks = useMemo(() => {
+    const result = [];
+    const baseTrack = [...set, ...set];
+    
+    // Row 1
+    result.push(baseTrack);
+    
+    // Row 2: interleaved/shuffled for variety
+    if (images.length > 3) {
+      const shuffled = [...set];
+      const half = Math.floor(shuffled.length / 2);
+      result.push([...shuffled.slice(half), ...shuffled.slice(0, half), ...shuffled.slice(half), ...shuffled.slice(0, half)]);
+    }
 
+    // Row 3: reversed for more variety
+    if (images.length > 6) {
+      const shuffled2 = [...set].reverse();
+      result.push([...shuffled2, ...shuffled2]);
+    }
+    
+    return result;
+  }, [set, images.length]);
 
+  if (!images || images.length === 0) return null;
 
   return (
     <section className="py-24 md:py-36 bg-surface overflow-hidden">
@@ -105,10 +120,19 @@ export function GallerySection({ images }: { images: string[] }) {
       </motion.div>
 
       {/* Row 1 — Left to Right */}
-      <ScrollRow track={track1} imagesLength={images.length} onImageSelect={setSelectedImage} />
+      {tracks[0] && (
+        <ScrollRow track={tracks[0]} rowIndex={0} imagesLength={images.length} onImageSelect={setSelectedImage} />
+      )}
       
       {/* Row 2 — Right to Left */}
-      <ScrollRow track={track2} reverse speed={45} imagesLength={images.length} onImageSelect={setSelectedImage} />
+      {tracks[1] && (
+        <ScrollRow track={tracks[1]} rowIndex={1} reverse speed={45} imagesLength={images.length} onImageSelect={setSelectedImage} />
+      )}
+
+      {/* Row 3 — Left to Right */}
+      {tracks[2] && (
+        <ScrollRow track={tracks[2]} rowIndex={2} speed={50} imagesLength={images.length} onImageSelect={setSelectedImage} />
+      )}
 
       {/* Lightbox Modal */}
       <AnimatePresence>
