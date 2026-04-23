@@ -41,7 +41,7 @@ export function Branding() {
             Portfolio
           </a>*/}
           <a
-            href="mailto:[EMAIL_ADDRESS]"
+            href="mailto:ailvedansh@gmail.com"
             className="font-label text-xs text-white hover:text-primary transition-colors tracking-widest uppercase border-b border-transparent hover:border-primary/30 pb-1"
           >
             Email
@@ -60,7 +60,7 @@ export function Branding() {
             href="tel:+919980891440"
             className="font-label text-xs text-white hover:text-[#D4AF37] transition-colors tracking-widest uppercase border-b border-transparent hover:border-[#D4AF37]/30 pb-1"
           >
-            Call-Mobile
+            Call - Mobile
           </a>
         </div>
       </motion.div>
